@@ -92,7 +92,7 @@ under the License.
               <tr>
                 <td align="right">
                   <div style="font-size: xx-small;">
-                    <b><i>${uiLabelMap.OrderAdjustment}</i>:</b> <b>${localOrderReadHelper.getAdjustmentType(orderItemAdjustment)}</b>&nbsp;
+                    <b><i>${uiLabelMap.OrderAdjustment}</i>:</b> <b>${localOrderReadHelper.getAdjustmentType(orderItemAdjustment, locale)}</b>&nbsp;
                     <#if orderItemAdjustment.description?has_content>: ${StringUtil.wrapString(orderItemAdjustment.get("description",locale))}</#if>
 
                     <#if "SALES_TAX" == orderItemAdjustment.orderAdjustmentTypeId>
@@ -140,7 +140,7 @@ under the License.
           </tr>
           <#list headerAdjustmentsToShow! as orderHeaderAdjustment>
             <tr>
-              <td align="right" colspan="4"><div><b>${localOrderReadHelper.getAdjustmentType(orderHeaderAdjustment)}</b></div></td>
+              <td align="right" colspan="4"><div><b>${localOrderReadHelper.getAdjustmentType(orderHeaderAdjustment, locale)}</b></div></td>
               <td align="right" nowrap="nowrap"><div><@ofbizCurrency amount=localOrderReadHelper.getOrderAdjustmentTotal(orderHeaderAdjustment) isoCode=currencyUomId/></div></td>
             </tr>
           </#list>
