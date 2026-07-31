@@ -2745,6 +2745,16 @@ public class OrderReadHelper {
      * @return the adjustment type
      */
     public String getAdjustmentType(GenericValue adjustment) {
+        return getAdjustmentType(adjustment, null);
+    }
+
+    /**
+     * Gets adjustment type, translated for the given locale.
+     * @param adjustment the adjustment
+     * @param locale     the locale to get the description for, if null the default locale is used
+     * @return the adjustment type
+     */
+    public String getAdjustmentType(GenericValue adjustment, Locale locale) {
         GenericValue adjustmentType = null;
         try {
             adjustmentType = adjustment.getRelatedOne("OrderAdjustmentType", false);
@@ -2754,7 +2764,7 @@ public class OrderReadHelper {
         if (adjustmentType == null || adjustmentType.get("description") == null) {
             return "";
         }
-        return adjustmentType.getString("description");
+        return (String) adjustmentType.get("description", locale);
     }
 
     /**
